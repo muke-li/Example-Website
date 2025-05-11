@@ -80,7 +80,7 @@ const sampleTransactions = [
 const AccountingTable = () => {
     return(
         <div className='w-full p-4'>
-            <h1 className='text-3xl font-bold mb-6'>Accountin Transactions</h1>
+            <h1 className='text-3xl font-bold mb-6'>Accountin Transactions!!!</h1>
         </div>
     )
 }
