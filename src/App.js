@@ -1,5 +1,7 @@
 import React from 'react';
 import Account from './Account';
+import Login from './Login';
+import Accounting from './Accounting';
 import { createTheme, ThemeProvider } from '@mui/material';
 
 const theme = createTheme({
@@ -96,7 +98,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <Account />
+        <Accounting />
       </div>
     </ThemeProvider>
   );
