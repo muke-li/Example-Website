@@ -1,88 +1,117 @@
 import React from 'react';
-//import { ChevronLeft, ChevronRighrt } from 'lucide-react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Chip,
+  Box,
+  Typography
+} from '@mui/material';
+import { type } from '@testing-library/user-event/dist/type';
 
-const sampleTransactions = [
-    {
-        id: 'TRX001',
-        date: '2025-05-01',
-        description: 'Office Supplies Purchase',
-        category: 'Supplies',
-        type: 'Expense',
-        amount: -150.75,
-        balance: 9849.25
-    },
-    {
-    id: 'TRX002',
+const transactions = [
+  {
+    id: 1,
+    date: '2025-05-01',
+    description: 'Office Supplies Purchase',
+    account: 'Office Supplies',
+    type: 'expense',
+    debit: 250.00,
+    credit: 0,
+    balance: 9750.00
+  },
+  {
+    id: 2,
     date: '2025-05-02',
-    description: 'Client Payment - Project Alpha',
-    category: 'Revenue',
-    type: 'Income',
-    amount: 5000.00,
-    balance: 14849.25
+    description: 'Client Payment - Invoice #1234',
+    account: 'Accounts Receivable',
+    type: 'income',
+    debit: 0,
+    credit: 3500.00,
+    balance: 13250.00
   },
-  {
-    id: 'TRX003',
-    date: '2025-05-03',
-    description: 'Salary Payment - John Doe',
-    category: 'Payroll',
-    type: 'Expense',
-    amount: -3500.00,
-    balance: 11349.25
-  },
-  {
-    id: 'TRX004',
-    date: '2025-05-04',
-    description: 'Equipment Purchase - Laptop',
-    category: 'Equipment',
-    type: 'Expense',
-    amount: -1200.00,
-    balance: 10149.25
-  },
-  {
-    id: 'TRX005',
-    date: '2025-05-05',
-    description: 'Client Payment - Consulting Services',
-    category: 'Revenue',
-    type: 'Income',
-    amount: 2500.00,
-    balance: 12649.25
-  },
-  {
-    id: 'TRX006',
-    date: '2025-05-06',
-    description: 'Utility Bill - Electricity',
-    category: 'Utilities',
-    type: 'Expense',
-    amount: -275.50,
-    balance: 12373.75
-  },
-  {
-    id: 'TRX007',
-    date: '2025-05-07',
-    description: 'Product Sales',
-    category: 'Revenue',
-    type: 'Income',
-    amount: 1750.00,
-    balance: 14123.75
-  },
-  {
-    id: 'TRX008',
-    date: '2025-05-08',
-    description: 'Internet Service',
-    category: 'Utilities',
-    type: 'Expense',
-    amount: -99.99,
-    balance: 14023.76
-  },
-];
-
+]
 
 const AccountingTable = () => {
-    return(
-        <div className='w-full p-4'>
-            <h1 className='text-3xl font-bold mb-6'>Accountin Transactions!!!</h1>
-        </div>
-    )
+
+  const formatCurrency = (amount) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(amount);
+  };
+
+  const getChipColor = (type) => {
+    switch(type) {
+      case 'income':
+        return 'success';
+      case 'expense':
+        return 'error';
+      default:
+        return 'default';
+    }
+  }
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography variant='h4' gutterBottom sx={{ mb: 3 }}>
+        Accounting Transaction
+      </Typography>
+
+      <TableContainer component={Paper} elevation={3}>
+        <Table sx={{ minWidth: 850 }}>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: '#f5f5f5'}}>
+              <TableCell sx={{ fontWeight: 'bold'}}>ID</TableCell>
+              <TableCell sx={{ fontWeight: 'bold'}}>Date</TableCell>
+              <TableCell sx={{ fontWeight: 'bold'}}>Description</TableCell>
+              <TableCell sx={{ fontWeight: 'bold'}}>Account</TableCell>
+              <TableCell sx={{ fontWeight: 'bold'}}>Type</TableCell>
+              <TableCell align='right' sx={{ fontWeight: 'bold'}}>Debit</TableCell>
+              <TableCell align='right' sx={{ fontWeight: 'bold'}}>Credit</TableCell>
+              <TableCell align='right' sx={{ fontWeight: 'bold'}}>Balance</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {transactions.map((transaction) => (
+              <TableRow
+                key={transaction.id}
+                sx={{
+                  '&:last-child td, &last-child th': { border: 0 },
+                  '&:hover': { background: '#f9f9f9' }
+                }}>
+                  <TableCell>{transaction.id}</TableCell>
+                  <TableCell>{transaction.date}</TableCell>
+                  <TableCell>{transaction.description}</TableCell>
+                  <TableCell>{transaction.account}</TableCell>
+                  <TableCell>
+                    <Chip 
+                      label={transaction.type}
+                      color={getChipColor(transaction.type)}
+                      size='small'
+                      sx={{ textTransform: 'capitalize'}}
+                    />
+                  </TableCell>
+                  <TableCell align='right'>
+                    {transaction.debit > 0 ? formatCurrency(transaction.debit) : '-'}
+                  </TableCell>
+                  <TableCell align='right'>
+                    {transaction.credit > 0 ? formatCurrency(transaction.credit) : '-'}
+                  </TableCell>
+                  <TableCell align='right' sx={{ fontWeight: 'bold'}}>
+                    {formatCurrency(transaction.balance)}
+                  </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  )
 }
 
 export default AccountingTable;
