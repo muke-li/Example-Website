@@ -88,6 +88,17 @@ const AccountingTable = () => {
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end'}}>
+        <Box sx={{ backgroundColor: '#f5f5f5', p: 2, borderRadius: 1 }}>
+          <Typography variant='h6'>
+            Total Debit: {formatCurrency(transactionsArray.reduce((sum, t) => sum + t.debit, 0))}
+          </Typography>
+          <Typography variant='h6'>
+            Total Credits: {formatCurrency(transactionsArray.reduce((sum, t) => sum + t.credit, 0))}
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   )
 }
