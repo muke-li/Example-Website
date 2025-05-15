@@ -1,4 +1,4 @@
-const transactions = [
+const transactionsArray = [
   {
     id: 1,
     date: '2025-05-01',
@@ -81,4 +81,4 @@ const transactions = [
   }
 ];
 
-export default transactions;
+export default transactionsArray;

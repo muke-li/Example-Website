@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Account from './Account';
-import Login from './Login';
 import Accounting from './Accounting';
-import { createTheme, ThemeProvider } from '@mui/material';
+import Sidebar from './components/Sidebar';
+import { createTheme, ThemeProvider, Typography, Box } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -13,7 +13,7 @@ const theme = createTheme({
     },
     secondary: {
       main: '#dc004e',
-      light: 'ff4081',
+      light: '#ff4081',
       dark: '#c51162'
     },
     text: {
@@ -27,7 +27,7 @@ const theme = createTheme({
   },
   spacing: 8,
   typography: {
-    h1:{
+    h1: {
       fontSize: '2.5rem',
       fontWeight: 600,
       marginBottom: '1rem',
@@ -94,11 +94,56 @@ const theme = createTheme({
   },
 });
 
+const Inventory = () => (
+  <Box sx={{ p: 3 }}>
+    <Typography variant='h4' gutterBottom>
+      Inventory
+    </Typography>
+    <Typography paragraph>
+      This is the Inventory page. Content will be added in the future.
+    </Typography>
+  </Box>
+);
+
+const Projects = () => (
+  <Box sx={{ p: 3 }}>
+    <Typography variant='h4' gutterBottom>
+      Projects
+    </Typography>
+    <Typography paragraph>
+      This is the Projects page. Content will be added in the future.
+    </Typography>
+  </Box>
+);
+
 function App() {
+  const [selectedPage, setSelectedPage] = useState(0);
+
+  const handlePageChange = (pageIndex) => {
+    setSelectedPage(pageIndex);
+  };
+
+  const renderContent = () => {
+    switch(selectedPage) {
+      case 0:
+        return <Account />
+      case 1:
+        return <Accounting />;
+      case 2:
+        return <Inventory />;
+      case 3:
+        return <Projects />;
+      default:
+        return <Account />;
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <Accounting />
+      <div className='App'>
+        <Sidebar onPageChange={handlePageChange} selectedPage={selectedPage}>
+          {renderContent()}
+        </Sidebar>
       </div>
     </ThemeProvider>
   );

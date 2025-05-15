@@ -1,21 +1,10 @@
 import React from 'react';
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Chip,
-  Box,
-  Typography
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip, Box, Typography
 } from '@mui/material';
-import { type } from '@testing-library/user-event/dist/type';
-import transactionsArray from './data/transactionData';
+import transactionArray from './data/transactionData';
 
-const AccountingTable = () => {
-
+const Accounting = () => {
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -55,7 +44,7 @@ const AccountingTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {transactionsArray.map((transaction) => (
+            {transactionArray.map((transaction) => (
               <TableRow
                 key={transaction.id}
                 sx={{
@@ -92,15 +81,15 @@ const AccountingTable = () => {
       <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end'}}>
         <Box sx={{ backgroundColor: '#f5f5f5', p: 2, borderRadius: 1 }}>
           <Typography variant='h6'>
-            Total Debit: {formatCurrency(transactionsArray.reduce((sum, t) => sum + t.debit, 0))}
+            Total Debit: {formatCurrency(transactionArray.reduce((sum, t) => sum + t.debit, 0))}
           </Typography>
           <Typography variant='h6'>
-            Total Credits: {formatCurrency(transactionsArray.reduce((sum, t) => sum + t.credit, 0))}
+            Total Credits: {formatCurrency(transactionArray.reduce((sum, t) => sum + t.credit, 0))}
           </Typography>
         </Box>
       </Box>
     </Box>
-  )
+  );
 }
 
-export default AccountingTable;
+export default Accounting;
