@@ -1,10 +1,12 @@
 import React from 'react';
 import {
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip, Box, Typography
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip, Box, Typography, useTheme
 } from '@mui/material';
 import transactionArray from './data/transactionData';
 
 const Accounting = () => {
+  const theme = useTheme();
+
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -24,13 +26,25 @@ const Accounting = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Typography variant='h4' gutterBottom sx={{ mb: 3 }}>
+    <Box sx={{ 
+      backgroundColor: theme.palette.background.default,
+      padding: theme.spacing(3)
+    }}>
+      <Typography variant='h1' color='primary.main' gutterBottom sx={{ mb: 3 }}>
         Accounting Transaction
       </Typography>
 
-      <TableContainer component={Paper} elevation={3}>
-        <Table sx={{ minWidth: 850 }}>
+      <TableContainer
+        component={Paper} 
+        elevation={3}
+        sx={{ 
+          borderRadius: theme.shape.borderRadius / 4,
+          border: `1px solid ${theme.palette.divider}`
+        }}>
+        <Table sx={{ 
+          minWidth: 850,
+          gap: theme.spacing
+        }}>
           <TableHead>
             <TableRow sx={{ backgroundColor: '#f5f5f5'}}>
               <TableCell sx={{ fontWeight: 'bold'}}>ID</TableCell>
