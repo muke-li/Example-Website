@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Chip, Box, Typography, useTheme
 } from '@mui/material';
-import transactionArray from './data/transactionData';
+import transactionArray from '../data/transactionData';
 
 const Accounting = () => {
   const theme = useTheme();

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Account from './Account';
-import Accounting from './Accounting';
+import Account from './pages/Account';
+import Accounting from './pages/Accounting';
+import Projects from './pages/Projects';
 import Sidebar from './components/Sidebar';
 import { createTheme, ThemeProvider, Typography, Box } from '@mui/material';
 
@@ -105,16 +106,16 @@ const Inventory = () => (
   </Box>
 );
 
-const Projects = () => (
-  <Box sx={{ p: 3 }}>
-    <Typography variant='h4' gutterBottom>
-      Projects
-    </Typography>
-    <Typography paragraph>
-      This is the Projects page. Content will be added in the future.
-    </Typography>
-  </Box>
-);
+// const Projects = () => (
+//   <Box sx={{ p: 3 }}>
+//     <Typography variant='h4' gutterBottom>
+//       Projects
+//     </Typography>
+//     <Typography paragraph>
+//       This is the Projects page. Content will be added in the future.
+//     </Typography>
+//   </Box>
+// );
 
 function App() {
   const [selectedPage, setSelectedPage] = useState(0);
