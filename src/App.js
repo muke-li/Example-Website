@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Account from './pages/Account';
 import Accounting from './pages/Accounting';
 import Projects from './pages/Projects';
+import Inventory from './pages/Inventory';
 import Sidebar from './components/Sidebar';
 import { createTheme, ThemeProvider, Typography, Box } from '@mui/material';
 
@@ -95,16 +96,16 @@ const theme = createTheme({
   },
 });
 
-const Inventory = () => (
-  <Box sx={{ p: 3 }}>
-    <Typography variant='h4' gutterBottom>
-      Inventory
-    </Typography>
-    <Typography paragraph>
-      This is the Inventory page. Content will be added in the future.
-    </Typography>
-  </Box>
-);
+// const Inventory = () => (
+//   <Box sx={{ p: 3 }}>
+//     <Typography variant='h4' gutterBottom>
+//       Inventory
+//     </Typography>
+//     <Typography paragraph>
+//       This is the Inventory page. Content will be added in the future.
+//     </Typography>
+//   </Box>
+// );
 
 // const Projects = () => (
 //   <Box sx={{ p: 3 }}>
